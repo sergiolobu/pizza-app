@@ -3,6 +3,7 @@
 {% block body %}
     {% for pizza in pizzas %}
         {{ pizza.name }}
+        <a href="{{ path('edit_pizza', {'id': pizza.id}) }}">Editar</a>
         <br>
     {% endfor %}
 {% endblock body %}

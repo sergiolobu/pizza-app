@@ -5,3 +5,7 @@ index:
 create_pizza:
     path: /pizza/create
     defaults: { _controller: PizzaBundle:Pizza:createPizza }
+
+edit_pizza:
+    path: /pizza/edit/{id}
+    defaults: { _controller: PizzaBundle:Pizza:editPizza }

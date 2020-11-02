@@ -43,6 +43,31 @@ class PizzaController extends Controller
         );
     }
 
+    public function editPizzaAction(Request $request, $id)
+    {
+        $pizza = $this->getPizzaRepository()->findOneBy(['id' => $id]);
+
+        $form = $this->createForm(PizzaType::class, $pizza);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->getDoctrineManager()->persist($pizza);
+            $this->getDoctrineManager()->flush();
+
+            $pizzas = $this->getPizzaRepository()->findAll();
+
+            return $this->render('pizza/pizza_list.html.twig', [
+                'pizzas' => $pizzas,
+            ]);
+        }
+
+        return $this->render(
+            'pizza/pizza_form.html.twig',
+            ['form' => $form->createView()]
+        );
+    }
+
     protected function getPizzaRepository()
     {
         return $this->get('app.pizza.repository');
