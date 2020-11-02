@@ -27,8 +27,8 @@ class PizzaController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $price = $this->calcularePrice($pizza->getIngredients());
-            
+            $price = $this->calculatePrice($pizza->getIngredients());
+
             $pizza->setPrice($price);
             $this->getDoctrineManager()->persist($pizza);
             $this->getDoctrineManager()->flush();
@@ -55,7 +55,7 @@ class PizzaController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $price = $this->calcularePrice($pizza->getIngredients());
+            $price = $this->calculatePrice($pizza->getIngredients());
 
             $pizza->setPrice($price);
             $this->getDoctrineManager()->persist($pizza);
@@ -74,7 +74,7 @@ class PizzaController extends Controller
         );
     }
 
-    protected function calcularePrice($ingredients)
+    protected function calculatePrice($ingredients)
     {
         $price = 0;
         $totalPrice = 0;
