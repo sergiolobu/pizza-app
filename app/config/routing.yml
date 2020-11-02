@@ -1,3 +1,7 @@
-app:
-    resource: '@PizzaBundle/Controller/'
-    type: annotation
+index:
+    path: /pizza/list
+    defaults: { _controller: PizzaBundle:Pizza:pizzaList }
+
+create_pizza:
+    path: /pizza/create
+    defaults: { _controller: PizzaBundle:Pizza:createPizza }
