@@ -5,10 +5,10 @@ namespace PizzaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="app_pizza")
- * @ORM\Entity(repositoryClass="PizzaBundle\Repository\PizzaRepository")
+ * @ORM\Table(name="app_ingredient")
+ * @ORM\Entity(repositoryClass="PizzaBundle\Repository\IngredientRepository")
  */
-class Pizza 
+class Ingredient
 {
     /**
      * @ORM\Column(type="integer")
@@ -27,15 +27,13 @@ class Pizza
      */
     protected $price;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Ingredient", inversedBy="ingredients")
-     * @ORM\JoinTable(name="pizzas_ingredients")
+     /**
+     * @ORM\ManyToMany(targetEntity="Pizza", mappedBy="ingredients")
      */
-    protected $ingredients;
+    protected $pizzas;
 
-    public function __construct() 
-    {
-        $this->ingredients = new \Doctrine\Common\Collections\ArrayCollection();
+    public function __construct() {
+        $this->pizzas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId()
@@ -60,17 +58,17 @@ class Pizza
 
     public function setPrice($price)
     {
-        $this->name = $price;
+        $this->price = $price;
     }
 
-    public function getIngredients()
+    public function getPizzas()
     {
-        return $this->ingredients;
+        return $this->pizzas;
     }
 
-    public function setIngredients($ingredients)
+    public function setPizzas($pizzas)
     {
-        $this->ingredients = $ingredients;
+        $this->pizzas = $pizzas;
     }
 }
 

@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for ingredient in ingredients %}
+        {{ ingredient.name }}
+        <a href="{{ path('edit_ingredient', {'id': ingredient.id}) }}">Editar</a>
+        <br>
+    {% endfor %}
+{% endblock body %}

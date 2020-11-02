@@ -19,3 +19,9 @@ services:
         factory: ["@doctrine", getRepository]
         arguments:
             - PizzaBundle\Entity\Pizza
+    
+    app.ingredient.repository:
+        class: PizzaBundle\Repository\IngredientRepository
+        factory: ["@doctrine", getRepository]
+        arguments:
+            - PizzaBundle\Entity\Ingredient

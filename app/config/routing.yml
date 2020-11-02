@@ -1,4 +1,4 @@
-index:
+pizza_list:
     path: /pizza/list
     defaults: { _controller: PizzaBundle:Pizza:pizzaList }
 
@@ -9,3 +9,15 @@ create_pizza:
 edit_pizza:
     path: /pizza/edit/{id}
     defaults: { _controller: PizzaBundle:Pizza:editPizza }
+
+ingredient_list:
+    path: /ingredient/list
+    defaults: { _controller: PizzaBundle:Ingredient:ingredientList }
+
+create_ingredient:
+    path: /ingredient/create
+    defaults: { _controller: PizzaBundle:Ingredient:createIngredient }
+
+edit_ingredient:
+    path: /ingredient/edit/{id}
+    defaults: { _controller: PizzaBundle:Ingredient:editIngredient }
