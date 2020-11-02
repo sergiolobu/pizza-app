@@ -3,6 +3,8 @@
 {% block body %}
     {{ form_start(form) }}
         {{ form_row(form.name) }}
+        {{ form_row(form.ingredients) }}
+        {{ form_row(form.price) }}
         <button type="submit">Crear</button>
     {{ form_end(form) }}
 {% endblock %}

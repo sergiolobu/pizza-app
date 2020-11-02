@@ -6,4 +6,6 @@
         <a href="{{ path('edit_pizza', {'id': pizza.id}) }}">Editar</a>
         <br>
     {% endfor %}
+    <a href="{{ path('create_pizza') }}">Nueva Pizza</a>
+    <a href="{{ path('create_ingredient') }}">Nuevo Ingrediente</a>
 {% endblock body %}

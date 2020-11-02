@@ -36,6 +36,11 @@ class Ingredient
         $this->pizzas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     public function getId()
     {
         return $this->id;

@@ -27,6 +27,9 @@ class PizzaController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $price = $this->calcularePrice($pizza->getIngredients());
+            
+            $pizza->setPrice($price);
             $this->getDoctrineManager()->persist($pizza);
             $this->getDoctrineManager()->flush();
 
@@ -52,6 +55,9 @@ class PizzaController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $price = $this->calcularePrice($pizza->getIngredients());
+
+            $pizza->setPrice($price);
             $this->getDoctrineManager()->persist($pizza);
             $this->getDoctrineManager()->flush();
 
@@ -66,6 +72,22 @@ class PizzaController extends Controller
             'pizza/pizza_form.html.twig',
             ['form' => $form->createView()]
         );
+    }
+
+    protected function calcularePrice($ingredients)
+    {
+        $price = 0;
+        $totalPrice = 0;
+
+        foreach ($ingredients as $ingredient) 
+        {
+            $price = $price + $ingredient->getPrice();    
+        }
+
+        $totalPrice = $price + $price / 2;
+
+        return $totalPrice;
+
     }
 
     protected function getPizzaRepository()

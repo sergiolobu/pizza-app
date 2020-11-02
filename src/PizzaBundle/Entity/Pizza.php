@@ -23,7 +23,7 @@ class Pizza
     protected $name;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="decimal", scale=4, nullable=true)
      */
     protected $price;
 
@@ -60,7 +60,7 @@ class Pizza
 
     public function setPrice($price)
     {
-        $this->name = $price;
+        $this->price = $price;
     }
 
     public function getIngredients()
