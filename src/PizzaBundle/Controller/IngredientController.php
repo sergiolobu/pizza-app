@@ -12,11 +12,7 @@ class IngredientController extends Controller
 {
     public function ingredientListAction(Request $request)
     {
-        $ingredients = $this->getIngredientRepository()->findAll();
-
-        return $this->render('ingredient/ingredient_list.html.twig', [
-            'ingredients' => $ingredients,
-        ]);
+        return $this->renderIngredientList();
     }
 
     public function createIngredientAction(Request $request)
@@ -30,11 +26,7 @@ class IngredientController extends Controller
 
             $this->saveIngredient($ingredient);
 
-            $ingredients = $this->getIngredientRepository()->findAll();
-
-            return $this->render('ingredient/ingredient_list.html.twig', [
-                'ingredients' => $ingredients,
-            ]);
+            return $this->renderIngredientList();
         }
 
         return $this->render(
@@ -54,11 +46,7 @@ class IngredientController extends Controller
 
             $this->saveIngredient($ingredient);
 
-            $ingredients = $this->getIngredientRepository()->findAll();
-
-            return $this->render('ingredient/ingredient_list.html.twig', [
-                'ingredients' => $ingredients,
-            ]);
+            return $this->renderIngredientList();
         }
 
         return $this->render(
@@ -71,6 +59,15 @@ class IngredientController extends Controller
     {
         $this->getDoctrineManager()->persist($ingredient);
         $this->getDoctrineManager()->flush();
+    }
+
+    protected function renderIngredientList()
+    {
+        $ingredients = $this->getIngredientRepository()->findAll();
+
+        return $this->render('ingredient/ingredient_list.html.twig', [
+            'ingredients' => $ingredients,
+        ]);
     }
 
     protected function getIngredientRepository()

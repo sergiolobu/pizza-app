@@ -12,11 +12,7 @@ class PizzaController extends Controller
 {
     public function pizzaListAction(Request $request)
     {
-        $pizzas = $this->getPizzaRepository()->findAll();
-
-        return $this->render('pizza/pizza_list.html.twig', [
-            'pizzas' => $pizzas,
-        ]);
+        return $this->renderPizzaList();
     }
 
     public function createPizzaAction(Request $request)
@@ -30,11 +26,7 @@ class PizzaController extends Controller
 
             $this->savePizza($pizza);
 
-            $pizzas = $this->getPizzaRepository()->findAll();
-
-            return $this->render('pizza/pizza_list.html.twig', [
-                'pizzas' => $pizzas,
-            ]);
+            return $this->renderPizzaList();
         }
 
         return $this->render(
@@ -56,11 +48,7 @@ class PizzaController extends Controller
 
             $this->savePizza($pizza);
 
-            $pizzas = $this->getPizzaRepository()->findAll();
-
-            return $this->render('pizza/pizza_list.html.twig', [
-                'pizzas' => $pizzas,
-            ]);
+            return $this->renderPizzaList();
         }
 
         return $this->render(
@@ -75,6 +63,15 @@ class PizzaController extends Controller
     {
         $this->getDoctrineManager()->persist($pizza);
         $this->getDoctrineManager()->flush();
+    }
+
+    protected function renderPizzaList()
+    {
+        $pizzas = $this->getPizzaRepository()->findAll();
+
+        return $this->render('pizza/pizza_list.html.twig', [
+            'pizzas' => $pizzas,
+        ]);
     }
 
     protected function getPizzaRepository()
