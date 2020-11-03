@@ -2,8 +2,13 @@
 
 {% block body %}
     {% for ingredient in ingredients %}
-        {{ ingredient.name }}
-        <a href="{{ path('edit_ingredient', {'id': ingredient.id}) }}">Editar</a>
-        <br>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ ingredient.name }}</h5>
+                <p class="card-text">Precio : {{ ingredient.price }}</p>
+                <a href="{{ path('edit_ingredient', {'id': ingredient.id}) }}" class="btn btn-primary">Editar</a>
+            </div>
+        </div>
     {% endfor %}
+<a href="{{ path('create_ingredient') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Nuevo Ingrediente</a>
 {% endblock body %}

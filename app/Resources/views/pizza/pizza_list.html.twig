@@ -2,14 +2,16 @@
 
 {% block body %}
     {% for pizza in pizzas %}
-        {{ pizza.name }}
-        <br>
-        Precio : {{ pizza_calculator_service.getPrice(pizza.ingredients) }}
-        <br>
-        <a href="{{ path('edit_pizza', {'id': pizza.id}) }}">Editar</a>
-        <br>
-        <br>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ pizza.name }}</h5>
+                <p class="card-text">Precio : {{ pizza_calculator_service.getPrice(pizza.ingredients) }}</p>
+                <a href="{{ path('edit_pizza', {'id': pizza.id}) }}" class="btn btn-primary">Editar</a>
+            </div>
+        </div>
     {% endfor %}
-    <a href="{{ path('create_pizza') }}">Nueva Pizza</a>
-    <a href="{{ path('create_ingredient') }}">Nuevo Ingrediente</a>
+
+    <a href="{{ path('create_pizza') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Nueva Pizza</a>
+    <a href="{{ path('create_ingredient') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Nuevo Ingrediente</a>
 {% endblock body %}
+
