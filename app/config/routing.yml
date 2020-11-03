@@ -1,3 +1,10 @@
+root:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /pizza/list
+        permanent: true
+
 pizza_list:
     path: /pizza/list
     defaults: { _controller: PizzaBundle:Pizza:pizzaList }
