@@ -4,12 +4,12 @@ namespace PizzaBundle\Services;
 
 class PizzaPriceCalculator
 {
-    public function getPrice($ingredients)
+    public function calculate($pizza)
     {
         $price = 0;
         $totalPrice = 0;
-
-        foreach ($ingredients as $ingredient) 
+        
+        foreach ($pizza->getIngredients() as $ingredient) 
         {
             $price = $price + $ingredient->getPrice();    
         }

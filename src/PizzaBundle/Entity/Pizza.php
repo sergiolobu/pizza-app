@@ -48,6 +48,12 @@ class Pizza
         $this->name = $name;
     }
 
+    public function addIngredient(Ingredient $ingredient)
+    {
+        $this->ingredients->add($ingredient);
+
+        return $this;
+    }
     public function getIngredients()
     {
         return $this->ingredients;

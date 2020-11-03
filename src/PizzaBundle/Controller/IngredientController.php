@@ -28,8 +28,7 @@ class IngredientController extends Controller
         
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->getDoctrineManager()->persist($ingredient);
-            $this->getDoctrineManager()->flush();
+            $this->saveIngredient($ingredient);
 
             $ingredients = $this->getIngredientRepository()->findAll();
 
@@ -53,8 +52,7 @@ class IngredientController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->getDoctrineManager()->persist($ingredient);
-            $this->getDoctrineManager()->flush();
+            $this->saveIngredient($ingredient);
 
             $ingredients = $this->getIngredientRepository()->findAll();
 
@@ -67,6 +65,12 @@ class IngredientController extends Controller
             'ingredient/ingredient_form.html.twig',
             ['form' => $form->createView()]
         );
+    }
+
+    protected function saveIngredient($ingredient)
+    {
+        $this->getDoctrineManager()->persist($ingredient);
+        $this->getDoctrineManager()->flush();
     }
 
     protected function getIngredientRepository()

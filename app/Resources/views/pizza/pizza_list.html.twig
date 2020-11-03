@@ -5,7 +5,7 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{{ pizza.name }}</h5>
-                <p class="card-text">Precio : {{ pizza_calculator_service.getPrice(pizza.ingredients) }}</p>
+                <p class="card-text">Precio : {{ pizza_calculator_service.calculate(pizza) }}</p>
                 <a href="{{ path('edit_pizza', {'id': pizza.id}) }}" class="btn btn-primary">Editar</a>
             </div>
         </div>

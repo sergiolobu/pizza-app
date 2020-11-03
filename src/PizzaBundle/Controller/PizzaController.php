@@ -28,8 +28,7 @@ class PizzaController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->getDoctrineManager()->persist($pizza);
-            $this->getDoctrineManager()->flush();
+            $this->savePizza($pizza);
 
             $pizzas = $this->getPizzaRepository()->findAll();
 
@@ -55,8 +54,7 @@ class PizzaController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->getDoctrineManager()->persist($pizza);
-            $this->getDoctrineManager()->flush();
+            $this->savePizza($pizza);
 
             $pizzas = $this->getPizzaRepository()->findAll();
 
@@ -71,6 +69,12 @@ class PizzaController extends Controller
                 'pizza' => $pizza
             ]
         );
+    }
+
+    protected function savePizza($pizza)
+    {
+        $this->getDoctrineManager()->persist($pizza);
+        $this->getDoctrineManager()->flush();
     }
 
     protected function getPizzaRepository()

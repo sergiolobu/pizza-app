@@ -4,7 +4,7 @@
     {{ form_start(form) }}
         {{ form_row(form.name) }}
         {{ form_row(form.ingredients) }}
-        <p>Price = {{ pizza_calculator_service.getPrice(pizza.ingredients) }} </p>
+        <p>Price = {{ pizza_calculator_service.calculate(pizza) }} </p>
         <button type="submit">Crear</button>
     {{ form_end(form) }}
 {% endblock %}
