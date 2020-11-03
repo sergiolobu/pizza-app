@@ -20,12 +20,7 @@ class PizzaType extends AbstractType
                 'class' => 'PizzaBundle:Ingredient',
                 'multiple' => true,
                 'expanded' => true,
-            ])
-            ->add('price', NumberType::class,[
-                'attr' => array(
-                    'readonly' => true,
-                ),
-            ]);  
+            ]); 
     }
 
     public function configureOptions(OptionsResolver $resolver)

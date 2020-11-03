@@ -22,14 +22,12 @@ class PizzaController extends Controller
     public function createPizzaAction(Request $request)
     {
         $pizza = new Pizza();
+        
         $form = $this->createForm(PizzaType::class, $pizza);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $price = $this->calculatePrice($pizza->getIngredients());
-
-            $pizza->setPrice($price);
             $this->getDoctrineManager()->persist($pizza);
             $this->getDoctrineManager()->flush();
 
@@ -41,8 +39,10 @@ class PizzaController extends Controller
         }
 
         return $this->render(
-            'pizza/pizza_form.html.twig',
-            ['form' => $form->createView()]
+            'pizza/pizza_form.html.twig',[
+                'form' => $form->createView(),
+                'pizza' => $pizza
+            ]
         );
     }
 
@@ -51,13 +51,10 @@ class PizzaController extends Controller
         $pizza = $this->getPizzaRepository()->findOneBy(['id' => $id]);
 
         $form = $this->createForm(PizzaType::class, $pizza);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $price = $this->calculatePrice($pizza->getIngredients());
-
-            $pizza->setPrice($price);
             $this->getDoctrineManager()->persist($pizza);
             $this->getDoctrineManager()->flush();
 
@@ -69,25 +66,11 @@ class PizzaController extends Controller
         }
 
         return $this->render(
-            'pizza/pizza_form.html.twig',
-            ['form' => $form->createView()]
+            'pizza/pizza_form.html.twig',[
+                'form' => $form->createView(),
+                'pizza' => $pizza
+            ]
         );
-    }
-
-    protected function calculatePrice($ingredients)
-    {
-        $price = 0;
-        $totalPrice = 0;
-
-        foreach ($ingredients as $ingredient) 
-        {
-            $price = $price + $ingredient->getPrice();    
-        }
-
-        $totalPrice = $price + $price / 2;
-
-        return $totalPrice;
-
     }
 
     protected function getPizzaRepository()

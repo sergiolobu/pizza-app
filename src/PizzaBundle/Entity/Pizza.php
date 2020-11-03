@@ -23,11 +23,6 @@ class Pizza
     protected $name;
 
     /**
-     * @ORM\Column(type="decimal", scale=4, nullable=true)
-     */
-    protected $price;
-
-    /**
      * @ORM\ManyToMany(targetEntity="Ingredient", inversedBy="ingredients")
      * @ORM\JoinTable(name="pizzas_ingredients")
      */
@@ -51,16 +46,6 @@ class Pizza
     public function setName($name)
     {
         $this->name = $name;
-    }
-
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    public function setPrice($price)
-    {
-        $this->price = $price;
     }
 
     public function getIngredients()

@@ -35,6 +35,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        pizza_calculator_service: '@app.pizza_price_calculator.service'
 
 # Doctrine Configuration
 doctrine:

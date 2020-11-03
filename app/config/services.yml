@@ -25,3 +25,6 @@ services:
         factory: ["@doctrine", getRepository]
         arguments:
             - PizzaBundle\Entity\Ingredient
+
+    app.pizza_price_calculator.service:
+        class: PizzaBundle\Services\PizzaPriceCalculator
